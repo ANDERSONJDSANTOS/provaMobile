@@ -1,11 +1,14 @@
 import { Title, Paragraph, Card } from 'react-native-paper';
-import {Text} from 'react'
+import ProgressBar from './ProgressoBar';
+
+import {Text} from 'react';
 
 const MyCard = ({ text, number, favorite, background }) => {
   return (
     <Card.Content style={{ backgroundColor:background, marginBottom: 20 }}>
       <Title>Nome: {text}</Title>
-      <Paragraph>Valor: {number}</Paragraph>
+      <Paragraph>Progresso</Paragraph>
+      <ProgressBar progress={number}/>
       <Text>Favorito: { favorite }</Text>
     </Card.Content>
 );

@@ -15,15 +15,17 @@ import { Card } from 'react-native-paper';
 export default function App() {
   const [lista, onChangeLista] = React.useState([]);
 
-  function onAdd(text, number, favorite) {
-    onChangeLista([{text: text, number: number, favorite: favorite}, ...lista]);
-    saveLista(lista);
+  async function onAdd(text, number, favorite) {
+    onChangeLista(() => {
+      return [{text: text, number: number, favorite: favorite} ,...lista]
+    });
+    await saveLista(lista);
   }
 
   async function loadLista() {
     try {
       const listaData = await AsyncStorage.getItem(STORAGE_KEY)
-
+      console.log(listaData, 'pego')
       if (listaData === null) return
 
       onChangeLista(JSON.parse(listaData));
@@ -34,6 +36,7 @@ export default function App() {
 
   async function saveLista(lista) {
     try {
+      console.log(lista, 'salva')
       await AsyncStorage.setItem(STORAGE_KEY, JSON.stringify(lista))
     } catch (e) {
       console.error('Failed to save lista.')

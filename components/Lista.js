@@ -1,6 +1,6 @@
 import React from "react";
-import { Text, SafeAreaView, StyleSheet, TextInput, Button, FlatList } from "react-native";
-
+import { Text, SafeAreaView, StyleSheet, FlatList } from "react-native";
+import ProgressBar from './ProgressoBar';
 import { Avatar, Card, Title, Paragraph } from 'react-native-paper';
 
 const Lista = (props) => {  
@@ -17,9 +17,9 @@ const Lista = (props) => {
              <Card>
               <Card.Content style={{ backgroundColor:background, marginBottom:20 }}>
                 <Title>Nome: {itemLista.item.text}</Title>
-                <Paragraph>Valor: {itemLista.item.number}</Paragraph>
+                <Paragraph>Progresso</Paragraph>
+                <ProgressBar progress={itemLista.item.number}/>
                 <Text>Favorito: { favorite }</Text>
-                {}
               </Card.Content>
             </Card>
           )

@@ -1,16 +1,19 @@
 import { Text, SafeAreaView, StyleSheet, TextInput, Button } from "react-native";
-import { Switch } from 'react-native-paper';
-import Toggle from '../components/toggle';
+import ProgressBar from './ProgressoBar';
+
+import NumberInput from "./number-input";
 import { useState } from "react";
 
-import * as Progress from 'react-native-progress';
+import Toggle from './toggle';
+
 
 const Formulario = (props) => {
   const [name, setName] = useState("");
   const [progress, setProgress] = useState(0);
   const [isSwitchOn, setIsSwitchOn] = useState(false);
+  const [percentage, setPercentage] = useState(0);
 
-  console.log(progress)
+  console.log(isSwitchOn)
 
   return (
     <SafeAreaView>
@@ -21,21 +24,15 @@ const Formulario = (props) => {
         placeholderTextColor= "black"
         onChangeText={setName}
       />
-      <TextInput
-        autoComplete="number" 
-        keyboardType="numeric"
-        placeholder= "Porcentagem de tarefa realizada"
-        style= { [styles.input, {margin:0, marginBottom:12, marginHorizontal:12}] }
-        placeholderTextColor= "black"
-        onChangeText={setProgress}
-        value={progress}
+      <NumberInput
+        percentage={ percentage }
+        value={ progress }
+        onChangeValue={ setProgress }
+        setPercentage={ setPercentage }
       />
-      <Progress.Bar 
-        borderColor="#841584"
-        progress={parseInt(progress)}
-        style={ styles.progressBar } 
-        width={200} 
-      /> 
+      <ProgressBar
+        progress={progress}
+      />
       <Text style={{marginHorizontal:12}}>Favorito ?</Text>     
       <Toggle
         isSwitchOn={isSwitchOn}
